@@ -4,7 +4,11 @@
 
 ## Nome do Projeto
 
+OrganizaAí
+
 #### Autor do projeto
+
+Ana Júlia Rodrigues Ribeiro
 
 ## Sumário
 
@@ -47,7 +51,7 @@
     <br>
     <sub>Figura 2 - Persona 2</sub>
     <br>
-    <sup>Fonte: Equipe Primesit, Faculdade Inteli 2025</sup>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
 </div>
 
 
@@ -56,7 +60,7 @@
     <br>
     <sub>Figura 3 - Persona 3</sub>
     <br>
-    <sup>Fonte: Equipe Primesit, Faculdade Inteli 2025</sup>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
 </div>
 
 
@@ -99,10 +103,63 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
+&emsp; Para que o sistema funcione de forma ágil e confiável, gerenciando usuários, tarefas e suas categorias, é essencial contar com uma estrutura de dados bem definida. Por isso, a escolha de um banco de dados relacional é fundamental, pois garante a integridade, a organização e o acesso rápido às informações que sustentam o OrganizaAí.
+&emsp; A partir disso, segue abaixo o Diagrama Entidade-Relacionamento que mostra a estrutura completa do banco de dados, com todas as tabelas e suas relações. 
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+<div style="text-align: center;">
+    <img src="../assets/modeloEntidadeRelacionamento.png" alt="Modelo Entidade Relacionamento" width="400">
+    <br>
+    <sub>Figura 4 - Modelo Entidade Relacionamento</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+&emsp; Observa-se, portanto, a estrutura das tabelas, seus atributos e os relacionamentos entre elas. A tabela USERS, por exemplo, armazena informações dos usuários, sendo que cada linha representa um usuário com seus respectivos dados. Ela possui um relacionamento do tipo 1:N (um para muitos) com a tabela TASKS, já que um único usuário pode estar associado a várias tarefas. Já a tabela CATEGORIES, que contém um único atributo — o nome da categoria —, também se relaciona com TASKS em uma relação 1:N, pois uma categoria pode classificar diversas tarefas.
+
+&emsp; Abaixo está o esqauema e Banco de Dados do OrganizaAí com as tabelas e suas relações:
+
+#### 1. Users e atribuição de Tasks
+***Tabela: ```USERS```***
+- Descrição: armazena informações dos usuários
+- ```id``` (INT, PK)
+- ```name```(VARCHAR)
+- ```email```(VARCHAR)
+- ```password```(VARCHAR)
+- ```created_at```(TIMESTAMP)
+
+***Tabela: ```TASKS```***
+- Descrição: armazena informações das tasks
+- ```id``` (INT, PK)
+- ```title```(VARCHAR)
+- ```description```(TEXT)
+- ```due_date```(DATE)
+- ```status```(VARCHAR)
+- ```user_id```(INT)
+- ```category_id```(INT, FK)
+- ```created_at``` (TIMESTAMP)
+
+***Relacionamento***: Um usuário pode estar vinculado a várias tarefas (relação 1:N com a tabela tasks).
+
+#### 2. Tasks e categorias 
+
+***Tabela: ```TASKS```***
+- Descrição: armazena informações das tasks
+- ```id``` (INT, PK)
+- ```title```(VARCHAR)
+- ```description```(TEXT)
+- ```due_date```(DATE)
+- ```status```(VARCHAR)
+- ```user_id```(INT)
+- ```category_id```(INT, FK)
+- ```created_at``` (TIMESTAMP)
+
+***Tabela: ```CATEGORIES```***
+- Descrição: Armazena as categorias utilizadas para classificar as tarefas.
+- ```id``` (INT, PK)
+- ```name```(VARCHAR)
+
+***Relacionamento***: Uma categoria pode ser associada a várias tarefas (relação 1:N com tasks).
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*

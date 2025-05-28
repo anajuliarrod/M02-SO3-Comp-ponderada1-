@@ -1,10 +1,12 @@
-const pool = require("../config/db");
+const userModel = require("../models/userModel");
+
 
 exports.getUsers = async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM users");
-    res.json(result.rows);
-  } catch (err) {
+    const result = await userModel.getAll();
+    return res.json(result.rows);
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ error: err.message });
   }
 };
@@ -23,12 +25,10 @@ exports.createUser = async (req, res) => {
   }
 
   try {
-    const result = await pool.query(
-      "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
-      [name, email, password]
-    );
+    const result = await userModel.getById();
     res.status(201).json(result.rows[0]);
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     res.status(400).json({ error: err.message });
   }
 };
@@ -36,9 +36,10 @@ exports.createUser = async (req, res) => {
 exports.getUserById = async (req, res) => {
   const { id } = req.params;
   try {
-    const result = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+    const result = await userModel.create();
     res.json(result.rows[0]);
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     res.status(404).json({ error: "Usuário não encontrado" });
   }
 };
@@ -47,12 +48,10 @@ exports.updateUser = async (req, res) => {
   const { id } = req.params;
   const { name, email, password } = req.body;
   try {
-    const result = await pool.query(
-      "UPDATE users SET name=$1, email=$2, password=$3 WHERE id=$4 RETURNING *",
-      [name, email, password, id]
-    );
+    const result = await userModel.update();
     res.json(result.rows[0]);
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     res.status(400).json({ error: err.message });
   }
 };
@@ -60,9 +59,10 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
-    await pool.query("DELETE FROM users WHERE id = $1", [id]);
+    await userModel.delete();
     res.status(204).send();
-  } catch (err) {
+  } catch (error) {
+    console.error(error);
     res.status(400).json({ error: err.message });
   }
 };

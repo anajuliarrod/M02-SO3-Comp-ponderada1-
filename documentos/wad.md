@@ -162,18 +162,28 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
 ***Relacionamento***: Uma categoria pode ser associada a várias tarefas (relação 1:N com tasks).
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+&emsp; Os models são responsáveis por interagir com o banco de dados, facilitando a manipulação dos dados. A seguir, uma descrição dos models implementados:
+- ```userModel```: Responsável por gerenciar os dados relacionados aos usuários. Este model executa operações como listar, adicionar, atualizar e remover usuários no banco de dados, sendo diretamente associado à tabela users.
+- ```tasksModel```: Manipula os dados das tarefas atribuídas aos usuários. É responsável por criar, listar, atualizar e excluir tarefas, atuando como a camada de acesso à tabela tasks, que centraliza o controle de pendências do sistema.
+- ```categoriesModel```: Gerencia as categorias disponíveis para classificação das tarefas. Este model realiza operações de CRUD na tabela categories, sendo essencial para manter a organização e filtragem das tarefas dentro da aplicação.
 
 ### 3.2. Arquitetura (Semana 5)
+&emsp; O padrão MVC (Model-View-Controller) é uma forma de organizar o código separando a lógica do sistema (Model), a interface com o usuário (View) e o controle das ações (Controller).
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+- ```Model```: cuida da lógica e acesso aos dados (como banco de dados);
+- ```View```: mostra os dados ao usuário (HTML, CSS, etc);
+- ```Controller```: liga o usuário ao sistema, controlando o que acontece ao clicar ou enviar dados.
 
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-  
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+&emsp; Esse padrão facilita a manutenção, a reutilização de código e a separação entre layout e funcionamento.
+
+*P<div style="text-align: center;">
+    <img src="../assets/projetoPessoalDiagramaMvc.drawio.png" alt="Modelo Entidade Relacionamento" width="400">
+    <br>
+    <sub>Figura 5 - Diagrama de arquitetura MVC</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
 
 ### 3.3. Wireframes (Semana 03)
 

@@ -176,7 +176,7 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
 
 &emsp; Esse padrão facilita a manutenção, a reutilização de código e a separação entre layout e funcionamento.
 
-*P<div style="text-align: center;">
+<div style="text-align: center;">
     <img src="../assets/projetoPessoalDiagramaMvc.drawio.png" alt="Modelo Entidade Relacionamento" width="400">
     <br>
     <sub>Figura 5 - Diagrama de arquitetura MVC</sub>
@@ -199,9 +199,9 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
 *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
 
 ### 3.6. WebAPI e endpoints (Semana 05)
+&emsp; As Web APIs desempenham um papel essencial na conexão entre diferentes sistemas, permitindo que aplicações distintas troquem informações de maneira organizada. Utilizando os chamados endpoints — que funcionam como portas de entrada para os recursos da API — é possível realizar ações como buscar, enviar e modificar dados. Esse tipo de integração facilita o reaproveitamento de funcionalidades, amplia a capacidade dos sistemas e torna o desenvolvimento de soluções digitais mais ágil. Por isso, APIs e seus endpoints são peças-chave na criação de ambientes tecnológicos bem integrados e eficientes.
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
-
+#### Autenticação
 ### 3.7 Interface e Navegação (Semana 07)
 
 *Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*

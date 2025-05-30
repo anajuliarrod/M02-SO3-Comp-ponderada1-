@@ -17,7 +17,7 @@ class Categories {
   static async update(id, data) {
     const result = await db.query(
       "UPDATE categories SET name=$1 WHERE id=$2 RETURNING *",
-      [date.name, id]
+      [data.name, id]
     );
     return result.rows[0];
   }

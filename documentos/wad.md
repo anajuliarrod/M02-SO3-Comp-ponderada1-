@@ -201,7 +201,237 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
 ### 3.6. WebAPI e endpoints (Semana 05)
 &emsp; As Web APIs desempenham um papel essencial na conexão entre diferentes sistemas, permitindo que aplicações distintas troquem informações de maneira organizada. Utilizando os chamados endpoints — que funcionam como portas de entrada para os recursos da API — é possível realizar ações como buscar, enviar e modificar dados. Esse tipo de integração facilita o reaproveitamento de funcionalidades, amplia a capacidade dos sistemas e torna o desenvolvimento de soluções digitais mais ágil. Por isso, APIs e seus endpoints são peças-chave na criação de ambientes tecnológicos bem integrados e eficientes.
 
-#### Autenticação
+#### USERS
+&emsp; Gerenciamento de informações dos usuários do sistema.
+
+#### Listar todos os usuários:
+- URL: ```api/users```
+- MÉTODO: ```GET```
+- RESPOSTA: 
+    ```json
+    {
+        "id": 12,
+        "name": "Maria",
+        "email": "aninhamary@example.com",
+        "password": "123456",
+        "created_at": "2025-05-30T06:02:20.444Z"
+    },
+    {
+        "id": 13,
+        "name": "Mateus",
+        "email": "mateus@example.com",
+        "password": "123456",
+        "created_at": "2025-05-30T06:05:04.851Z"
+    },
+    {
+        "id": 8,
+        "name": "Novo nome",
+        "email": "novoemail@example.com",
+        "password": "novasenha",
+        "created_at": "2025-05-30T01:58:50.172Z"
+    } 
+
+
+#### Selecionar por id
+- URL: ```api/users/:id```
+- MÉTODO: ```GET```
+- RESPOSTA: 
+    ```json
+    {
+    "id": 12,
+    "name": "Maria",
+    "email": "aninhamary@example.com",
+    "password": "123456",
+    "created_at": "2025-05-30T06:02:20.444Z"
+    }
+
+#### Adicionar um usuário
+- URL: ```api/users```
+- MÉTODO: ```POST```
+- BODY: 
+    ```json
+    {
+  "name": "Ana Julia",
+  "email": "aninhagamer@example.com",
+  "password": "senhaSegura123"
+    }
+- RESPOSTA: 
+    ```json
+    {
+    "id": 14,
+    "name": "Ana Julia",
+    "email": "aninhagamer@example.com",
+    "password": "senhaSegura123",
+    "created_at": "2025-05-30T07:50:56.252Z"
+    }
+
+#### Atualizar informações de um usuário
+- URL: ```api/users/:id```
+- MÉTODO: ```PUT```
+- BODY:
+```json
+    {
+    "name": "Ana Julia",
+    "email": "aninhagamer123@example.com",
+    "password": "senhaSegura123"
+    }
+    
+```
+    
+
+- RESPOSTA:
+```json
+    {
+    "id": 14,
+    "name": "Ana Julia",
+    "email": "aninhagamer123@example.com",
+    "password": "senhaSegura123",
+    "created_at": "2025-05-30T07:50:56.252Z"
+    }
+```
+#### Deletar um usuário
+- URL: ```api/users/:id```
+- MÉTODO: ```DELETE```
+- RESPOSTA (204 No Content)
+
+
+#### TASKS
+&emsp; Gerenciamento de informações das tarefas do sistema.
+
+#### Listar todos as tasks:
+- URL: ```api/tasks```
+- MÉTODO: ```GET```
+- RESPOSTA: 
+    ```json
+    {
+        "id": 11,
+        "title": "Analisar banco de dados",
+        "description": "Verificar se todas as tabelas estão completas",
+        "due_date": "2025-06-05T03:00:00.000Z",
+        "status": "pendente",
+        "user_id": 12,
+        "category_id": 2,
+        "created_at": "2025-05-30T07:04:24.447Z"
+    }
+
+
+#### Adicionar uma tarefa
+- URL: ```api/tasks```
+- MÉTODO: ```POST```
+- BODY: 
+    ```json
+    {
+        "title": "Revisar documentação técnica",
+        "description": "Conferir se os documentos estão atualizados antes da entrega final",
+        "due_date": "2025-06-10T03:00:00.000Z",
+        "status": "em andamento",
+        "user_id": 12,
+        "category_id": 2
+    }
+
+#### RESPOSTA: 
+ ```json
+    {
+        "id": 12,
+        "title": "Revisar documentação técnica",
+        "description": "Conferir se os documentos estão atualizados antes da entrega final",
+        "due_date": "2025-06-10T03:00:00.000Z",
+        "status": "em andamento",
+        "user_id": 12,
+        "category_id": 2,
+        "created_at": "2025-05-30T08:06:42.454Z"
+    }
+```
+
+#### Atualizar informações de uma tarefa
+- URL: ```api/tasks/:id```
+- MÉTODO: ```PUT```
+- BODY:
+```json
+    {
+        "title": "Revisar documentação técnica",
+        "description": "Conferir se os documentos estão atualizados antes da entrega final",
+        "due_date": "2025-06-10T03:00:00.000Z",
+        "status": "finalizada",
+        "user_id": 12,
+        "category_id": 2
+    }
+```
+    
+
+- RESPOSTA:
+```json
+    {
+        "id": 12,
+        "title": "Revisar documentação técnica",
+        "description": "Conferir se os documentos estão atualizados antes da entrega final",
+        "due_date": "2025-06-10T03:00:00.000Z",
+        "status": "finalizada",
+        "user_id": 12,
+        "category_id": 2,
+        "created_at": "2025-05-30T08:06:42.454Z"
+    }
+```
+#### Deletar um usuário
+- URL: ```api/users/:id```
+- MÉTODO: ```DELETE```
+- RESPOSTA (204 No Content)
+
+
+
+#### CATEGORIES
+&emsp; Gerenciamento de categorias das tarefas do sistema.
+
+#### Listar todos as categorias:
+- URL: ```api/categories```
+- MÉTODO: ```GET```
+- RESPOSTA: 
+    ```json
+    {
+        "id": 2,
+        "name": "Manutenção"
+    }
+#### Adicionar uma categoria
+- URL: ```api/categories```
+- MÉTODO: ```POST```
+- BODY: 
+    ```json
+    {
+        "name": "Revisão"
+    }
+- RESPOSTA: 
+    ```json
+        {
+            "id": 4,
+            "name": "Revisão"
+        }
+    ```
+
+#### Atualizar uma categoria
+- URL: ```api/categories/:id```
+- MÉTODO: ```PUT```
+- BODY:
+```json
+    {
+        "name": "Revisão final"
+    }
+```
+    
+
+- RESPOSTA:
+```json
+    {
+        "id": 4,
+        "name": "Revisão final"
+    }
+```
+#### Deletar um usuário
+- URL: ```api/users/:id```
+- MÉTODO: ```DELETE```
+- RESPOSTA (204 No Content)
+
+
+
 ### 3.7 Interface e Navegação (Semana 07)
 
 *Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*

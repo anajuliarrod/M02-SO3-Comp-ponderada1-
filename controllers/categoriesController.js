@@ -25,7 +25,7 @@ exports.updateCategory = async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   try {
-    const result = await categoriesModel.update(id, name);
+    const result = await categoriesModel.update(id, {name});
     res.json(result);
   } catch (error) {
     console.error(error);

@@ -184,19 +184,280 @@ A User Story é testável, pois é possível verificar se as tarefas estão send
     <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
 </div>
 
+### Views
 
-### 3.3. Wireframes (Semana 03)
+Com base nos controllers disponíveis (User, Tasks e Categories) e nas user stories fornecidas, segue a documentação das telas essenciais do sistema:
 
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
+## Usuário
+
+**1. Tela de Login**
+
+- **Função:** Permite que o usuário acesse o sistema através de suas credenciais (email e senha).
+
+- **Componentes/Inputs Principais:** Formulário com campos para email e senha e botão de login. Utiliza uma estrutura HTML simples com validação de formulário.
+
+- **Conexão com Controllers:** Ao submeter o formulário, o JavaScript envia uma requisição que verifica as credenciais usando o método `getById` do `User` controller para buscar o usuário pelo email e comparar a senha. Se válidas, o usuário é autenticado e redirecionado para o Dashboard.
+
+**2. Dashboard / Lista de Tarefas (Tela Principal)**
+
+- **Função:** Apresenta ao usuário uma visão geral de suas tarefas, permitindo fácil visualização, acesso rápido para criação e modificação, e organização básica. Esta tela atende diretamente às necessidades expressas em US01 (organizar e categorizar), US02 (visualizar para priorizar) e US03 (acompanhar tarefas).
+
+- **Componentes/Inputs Principais:**
+    - Lista/Cards exibindo as tarefas do usuário (com título, categoria, data de vencimento, status)
+    - Opções de filtro por categoria e status
+    - Botão para adicionar uma nova tarefa
+    - Links ou botões em cada tarefa para visualizar detalhes, editar ou excluir
+
+- **Conexão com Controllers:** Ao carregar, a View faz uma chamada que aciona o método `getAll` do controller `Tasks` para buscar todas as tarefas. Os filtros podem ser aplicados no frontend ou através de parâmetros adicionais na consulta. Ações de editar/excluir em uma tarefa específica chamam os métodos `update` ou `delete` do controller `Tasks`.
+
+**3. Criar / Editar Tarefa**
+
+- **Função:** Permite que o usuário crie novas tarefas ou modifique tarefas existentes, detalhando informações como título, descrição, categoria, data de vencimento e status. Esta tela é fundamental para atender US01 (categorizar tarefas) e US03 (criar tarefas de forma prática).
+
+- **Componentes/Inputs Principais:**
+    - Formulário com campos para título, descrição, categoria (dropdown), data de vencimento (date picker) e status (dropdown)
+    - Botões para salvar ou cancelar a operação
+
+- **Conexão com Controllers:** Ao carregar (para o dropdown de categorias), a View chama o método `getAll` do controller `Categories`. Ao submeter o formulário, aciona o método `create` ou `update` do controller `Tasks`, dependendo se é uma nova tarefa ou edição.
+
+**4. Gerenciar Categorias**
+
+- **Função:** Permite ao usuário visualizar, criar, editar e excluir categorias para organização de tarefas, atendendo diretamente à US01 (categorizar tarefas de forma clara).
+
+- **Componentes/Inputs Principais:**
+    - Lista de categorias existentes
+    - Formulário para adicionar nova categoria (nome)
+    - Opções para editar ou excluir categorias existentes
+
+- **Conexão com Controllers:** A View interage com o controller `Categories` através dos métodos `getAll`, `create`, `update` e `delete`. As operações são refletidas no banco de dados e atualizadas na interface.
+
+**5. Perfil do Usuário**
+
+- **Função:** Permite ao usuário visualizar e editar suas informações pessoais.
+
+- **Componentes/Inputs Principais:**
+    - Exibição dos dados atuais do usuário
+    - Formulário para atualização de nome, email e senha
+
+- **Conexão com Controllers:** A View interage com o controller `User` através dos métodos `getById` para buscar dados do usuário e `update` para atualizar informações. As alterações são validadas, persistidas no banco de dados e refletidas na interface.
+
+
+## Observações Técnicas
+
+- **Arquitetura MVC:** O sistema segue o padrão MVC (Model-View-Controller) conforme mostrado no diagrama fornecido, com três controllers principais: User, Tasks e Categories.
+
+- **Responsividade:** Todas as telas são responsivas e se adaptam a diferentes tamanhos de tela.
+
+- **Armazenamento:** As operações de CRUD são realizadas através dos controllers que se comunicam com o banco de dados PostgreSQL.
+
+- **Autenticação:** O sistema utiliza autenticação básica para proteger as rotas e garantir que apenas usuários autorizados acessem as funcionalidades.
+
+- **User Stories Atendidas:** 
+  - US01: Organização e categorização de tarefas (Dashboard e Gerenciar Categorias)
+  - US02: Priorização de tarefas com base em urgência (Dashboard com filtros e status)
+  - US03: Plataforma rápida e prática para criar e acompanhar tarefas (Criar/Editar Tarefa e Dashboard)
+
+
+### 3.3. Wireframes 
+
+<div style="text-align: center;">
+    <img src="../assets/wireframeProjetoPessoal.png" alt="Wireframe" width="400">
+    <br>
+    <sub>Figura 6 - Wireframe</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+### Relação entre Wireframes e User Stories
+
+&emsp; Os wireframes desenvolvidos para o gerenciador de tarefas foram pensados especificamente para atender às necessidades expressas nas três user stories. A tela de Dashboard, com seus cards organizados e filtros por categoria e status, permite que Cláudia (US01) organize visualmente suas tarefas e que Marcelo (US02) identifique rapidamente as prioridades através dos status e datas de vencimento. A interface limpa e direta atende à necessidade de Beatriz (US03) de ter uma plataforma rápida e sem complicações.
+
+&emsp; A tela de Criar/Editar Tarefa, com campos simples e objetivos, possibilita que Cláudia categorize suas atividades, que Marcelo defina prioridades através do status e datas, e que Beatriz crie tarefas de forma ágil sem navegação complexa. Já a tela de Gerenciar Categorias é especialmente valiosa para Cláudia, permitindo personalizar a organização conforme seus projetos evoluem.
+
+&emsp; Em conjunto, estas telas formam uma solução coesa que equilibra organização, priorização e praticidade, respondendo diretamente aos desafios apresentados pelos três usuários em suas histórias.
+
 
 ### 3.4. Guia de estilos (Semana 05)
+&emsp; Este guia de estilos apresenta os principais padrões visuais e componentes utilizados no Gerenciador de Tarefas, servindo como referência para manter a consistência visual e a experiência do usuário em toda a aplicação mobile.
 
-*Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.*
 
+### Layout e Grid 
+&emsp; O layout da aplicação segue um sistema de grid de 4 colunas, otimizado para dispositivos móveis, com os seguintes padrões:
+- Dimensões base: Padrão iPhone 14;
+
+- Margens laterais: 40px para a tela de login e 20px para as demais telas;
+
+- Sistema de espaçamento: 20px entre as colunas;
+
+&emsp; Veja abaixo o sistema de grip aplicado no protótipo: 
+
+<div style="text-align: center;">
+    <img src="../assets/layoutAndGrid.png" alt="Layout e Grid" width="400">
+    <br>
+    <sub>Figura 7 - Layout e Grid</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+### Tipografia
+&emsp; A família tipográfica principal é a Inter, uma fonte sans-serif moderna e de alta legibilidade em telas pequenas:
+
+<div style="text-align: center;">
+    <img src="../assets/tipografia.png" alt="Tipografia" width="400">
+    <br>
+    <sub>Figura 8 - Tipografia</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+### Paleta de Cores
+&emsp; A paleta de cores foi cuidadosamente selecionada para garantir contraste adequado e hierarquia visual clara:
+
+<div style="text-align: center;">
+    <img src="../assets/cores.png" alt="Paleta de Cores" width="400">
+    <br>
+    <sub>Figura 9 - Paleta de Cores</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+&emsp; A paleta de cores foi selecionada para criar uma identidade visual coesa e funcional. Os tons de azul estabelecem a personalidade do aplicativo, enquanto as cores secundárias (verde, amarelo e vermelho) cumprem funções semânticas essenciais: sucesso, alerta e erro, respectivamente. A escala de cinzas complementa o sistema, criando hierarquia visual para textos e elementos secundários. Este conjunto de cores não apenas embeleza a interface, mas também apoia a usabilidade e acessibilidade, garantindo contraste adequado e significado visual consistente em toda a aplicação.
+
+### Botões
+&emsp; Os botões seguem um padrão consistente com diferentes estados e variações:
+
+<div style="text-align: center;">
+    <img src="../assets/botoes.png" alt="Botões" width="400">
+    <br>
+    <sub>Figura 10 - Botões</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+&emsp; Veja que cada botão tem 4 variantes, sendo uma no estado Normal, uma em Hover, uma Pressionada e uma Desabilitada, suas configurações são: 
+
+- Normal: Opacidade 100%;
+- Hover: Escurecido em 10%;
+- Pressionado: Escurecido em 15%;
+- Desabilitado: Opacidade 50%.
+
+### Campos de Formulário
+&emsp; Os campos de formulário são projetados para facilitar a entrada de dados em dispositivos móveis:
+
+<div style="text-align: center;">
+    <img src="../assets/camposFormularios.png" alt="Campos de formulário" width="400">
+    <br>
+    <sub>Figura 11 - Botões</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+
+&emsp; Os campos de formulário apresentados acima foram cuidadosamente projetados para proporcionar uma experiência de usuário intuitiva e eficiente. Cada elemento segue rigorosamente o guia de estilos estabelecido, garantindo consistência visual e funcional em toda a aplicação.
+
+&emsp; Os inputs de texto para título e nome mantêm uma estrutura limpa com rótulos claros, enquanto as áreas de descrição oferecem espaço adequado para conteúdo mais extenso. Os dropdowns para categorias e status apresentam estados fechados e abertos bem definidos, facilitando a seleção de opções pelo usuário. Os campos de data foram formatados para entrada padronizada, e os campos de email e senha incluem ícones indicativos que melhoram a compreensão imediata de sua função.
+
+&emsp; Esta biblioteca de componentes de formulário não apenas atende às necessidades funcionais do gerenciador de tarefas, mas também contribui para uma experiência visual coesa e profissional, refletindo o cuidado com os detalhes de interação que são essenciais para aplicações mobile de alta qualidade.
+
+### Ícones e Assets
+&emsp; O sistema utiliza ícones da biblioteca Font Awesome para garantir boa visibilidade em telas touch:
+
+<div style="text-align: center;">
+    <img src="../assets/icones.png" alt="Iconografia" width="400">
+    <br>
+    <sub>Figura 12 - Iconografia</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
+&emsp; O protótipo de alta fidelidade do Gerenciador de Tarefas foi desenvolvido seguindo o guia de estilos apresentado anteriormente, transformando os wireframes em uma interface visual completa e refinada. Abaixo estão as principais telas do sistema, organizadas na ordem de uso.
 
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
+#### Tela de Login
+
+<div style="text-align: center;">
+    <img src="../assets/telalogin.png" alt="Tela de login" width="200">
+    <br>
+    <sub>Figura 13 - Tela de login</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+&emsp; A tela de login apresenta uma interface limpa e direta, com campos para email e senha, seguindo a paleta de cores principal do sistema.
+
+#### Tela de home
+
+<div style="text-align: center;">
+    <img src="../assets/telahome.png" alt="Tela de login" width="200">
+    <br>
+    <sub>Figura 14 - Tela de home</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+&emsp; A home é a tela principal do aplicativo, exibindo as tarefas do usuário organizadas em cards, com filtros por categoria e status, e um botão de destaque para adicionar novas tarefas.
+
+#### Tela de adicionar tarefa
+
+<div style="text-align: center;">
+    <img src="../assets/telaNovaTarefa.png" alt="Tela de adicionar tarefa" width="200">
+    <br>
+    <sub>Figura 15 - Tela de adicionar tarefa</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+&emsp; Este modal permite ao usuário adicionar ou modificar tarefas, com campos para título, descrição, categoria, data de vencimento e status.
+
+#### Tela de adicionar categoria
+
+<div style="text-align: center;">
+    <img src="../assets/telaNovaCategoria.png" alt="Tela de adicionar categoria" width="200">
+    <br>
+    <sub>Figura 16 - Tela de adicionar categoria</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+&emsp; O modal de categorias permite ao usuário visualizar, adicionar, editar e excluir categorias para organização das tarefas.
+
+#### Tela de perfil
+
+<div style="text-align: center;">
+    <img src="../assets/telaPerfil.png" alt="Tela de perfil" width="200">
+    <br>
+    <sub>Figura 17 - Tela de Perfil</sub>
+    <br>
+    <sup>Fonte: Ana Ribeiro, Faculdade Inteli 2025</sup>
+</div>
+&emsp; Este modal permite ao usuário visualizar e editar suas informações pessoais, como nome, email e senha.
+
+#### Fluxo de navegação
+&emsp; O protótipo foi projetado para oferecer uma navegação intuitiva entre as telas:
+1. O usuário inicia na tela de login
+
+2. Após autenticação, é direcionado ao dashboard
+
+3. Do dashboard, pode acessar:
+
+- Modal de criar tarefa (botão "Nova Tarefa")
+
+- Modal de editar tarefa (botão de edição nos cards)
+
+- Modal de gerenciar categorias (via menu)
+
+- Modal de perfil do usuário (via menu)
+
+
+#### Relação com User Stories
+&emsp; O protótipo atende diretamente às necessidades expressas nas user stories:
+
+- Para Cláudia (US01): O sistema de categorias coloridas e a organização visual clara permitem gerenciar tarefas de forma eficiente
+
+- Para Marcelo (US02): Os indicadores de status e datas de vencimento facilitam a priorização de tarefas
+
+- Para Beatriz (US03): A interface simplificada e direta permite criar e acompanhar tarefas rapidamente
+
+&emsp; Link para o Protótipo Completo: 
+ [Gerenciador de Tarefas - Protótipo Figma](https://www.figma.com/design/nv5f7IA5JDPXFmgR2kKwus/wireframe_projetopessoal?node-id=26-849&t=ir3KwAfZNQ0TVb0R-1)
+
+&emsp; Este protótipo representa a visão final da interface do Gerenciador de Tarefas, pronta para implementação, mantendo fidelidade às user stories e wireframes desenvolvidos anteriormente, com refinamentos visuais que melhoram a experiência do usuário.
+
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 &emsp; As Web APIs desempenham um papel essencial na conexão entre diferentes sistemas, permitindo que aplicações distintas troquem informações de maneira organizada. Utilizando os chamados endpoints — que funcionam como portas de entrada para os recursos da API — é possível realizar ações como buscar, enviar e modificar dados. Esse tipo de integração facilita o reaproveitamento de funcionalidades, amplia a capacidade dos sistemas e torna o desenvolvimento de soluções digitais mais ágil. Por isso, APIs e seus endpoints são peças-chave na criação de ambientes tecnológicos bem integrados e eficientes.

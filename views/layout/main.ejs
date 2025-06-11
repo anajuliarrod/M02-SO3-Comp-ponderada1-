@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%- title || 'OrganizaAi' %></title>
+    <title><%= title %></title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <div class="container">
         <%- body %>
-        
+
         <nav class="bottom-nav">
             <a href="/home" class="nav-item <%= currentPage === 'home' ? 'active' : '' %>">
                 <div class="nav-icon icon-home"></div>
@@ -31,4 +31,3 @@
     </div>
 </body>
 </html>
-

@@ -1,0 +1,29 @@
+<%- include('../components/page-header', { pageTitle: 'Gerenciador de categorias', showBackButton: true }) %>
+
+<div class="content p-3">
+    <!-- Formulário para nova categoria -->
+    <div class="form-group mb-4">
+        <div class="flex items-center">
+            <input type="text" id="newCategoryName" class="form-input" placeholder="Categoria" style="margin-right: 10px;">
+            <button class="btn" onclick="addCategory()" style="white-space: nowrap;">+</button>
+        </div>
+    </div>
+
+    <!-- Lista de Categorias -->
+    <div id="categoriesList">
+        <!-- Categorias serão carregadas via JavaScript -->
+    </div>
+</div>
+
+<script src="/js/categories.js"></script>
+
+<script>
+// Definir página atual para navegação
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPageElement = document.querySelector('.nav-item.active');
+    if (currentPageElement) {
+        currentPageElement.classList.remove('active');
+    }
+    document.querySelector('a[href="/novaCategoria"]').classList.add('active');
+});
+</script>

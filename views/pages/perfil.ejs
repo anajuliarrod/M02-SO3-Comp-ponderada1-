@@ -1,0 +1,47 @@
+<%- include('../components/page-header', { pageTitle: 'Perfil', showBackButton: true }) %>
+
+<div class="content p-3">
+    <!-- Avatar do usuário -->
+    <div class="text-center mb-4">
+        <div style="width: 120px; height: 120px; background: #e0e0e0; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 48px; color: #666;">
+            👤
+        </div>
+    </div>
+
+    <!-- Formulário de perfil -->
+    <form id="profileForm">
+        <div class="form-group">
+            <label class="form-label" for="name">Nome</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="Nome" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="email">E-mail</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="email@exemplo.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="password">Senha</label>
+            <input type="password" id="password" name="password" class="form-input" placeholder="••••••••">
+            <small style="color: #666; font-size: 12px;">Deixe em branco para manter a senha atual</small>
+        </div>
+        
+        <div class="form-actions mt-4">
+            <button type="button" class="btn btn-secondary" onclick="logout()">Sair</button>
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+    </form>
+</div>
+
+<script src="/js/profile.js"></script>
+
+<script>
+// Definir página atual para navegação
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPageElement = document.querySelector('.nav-item.active');
+    if (currentPageElement) {
+        currentPageElement.classList.remove('active');
+    }
+    document.querySelector('a[href="/perfil"]').classList.add('active');
+});
+</script>

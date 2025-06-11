@@ -1,0 +1,40 @@
+<%- include('../components/page-header', { pageTitle: 'Gerenciador de tarefas', showBackButton: false }) %>
+
+<div class="content p-3">
+    <!-- Filtros -->
+    <div class="filters mb-3">
+        <div class="form-group">
+            <select id="categoryFilter" class="form-select">
+                <option value="">Categoria</option>
+                <!-- Categorias serão carregadas via JavaScript -->
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="statusFilter" class="form-select">
+                <option value="">Status</option>
+                <option value="Pendente">Pendente</option>
+                <option value="Concluída">Concluída</option>
+                <option value="Vencimento">Vencimento</option>
+            </select>
+        </div>
+        <button class="btn btn-secondary" onclick="addNewTask()">Nova tarefa</button>
+    </div>
+
+    <!-- Lista de Tarefas -->
+    <div id="tasksList">
+        <!-- Tarefas serão carregadas via JavaScript -->
+    </div>
+</div>
+
+<script src="/js/tasks.js"></script>
+
+<script>
+// Definir página atual para navegação
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPageElement = document.querySelector('.nav-item.active');
+    if (currentPageElement) {
+        currentPageElement.classList.remove('active');
+    }
+    document.querySelector('a[href="/home"]').classList.add('active');
+});
+</script>

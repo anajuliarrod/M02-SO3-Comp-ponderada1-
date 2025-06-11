@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= pageTitle %></title>  
-  <style>
-    <%- include('../css/style.css'); %>
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title || 'OrganizaAi' %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <!-- Inclui o cabeçalho como um partial -->
-  <%- include('../components/header') %>
-
-  <main>
-    <!-- Renderiza o conteúdo da página específica -->
-    <%- include(content) %>
-  </main>
-
-  <footer>
-    <!-- Rodapé comum aqui -->
-    <p>Rodapé da Aplicação</p>
-  </footer>
-
-  <!-- Adicione scripts JS se necessário -->
-  <script src="/js/script.js"></script>
-  
+    <div class="container">
+        <%- body %>
+        
+        <nav class="bottom-nav">
+            <a href="/home" class="nav-item <%= currentPage === 'home' ? 'active' : '' %>">
+                <div class="nav-icon icon-home"></div>
+                <span>Tarefas</span>
+            </a>
+            <a href="/novaTarefa" class="nav-item <%= currentPage === 'novaTarefa' ? 'active' : '' %>">
+                <div class="nav-icon icon-plus"></div>
+                <span>Nova</span>
+            </a>
+            <a href="/novaCategoria" class="nav-item <%= currentPage === 'novaCategoria' ? 'active' : '' %>">
+                <div class="nav-icon icon-tag"></div>
+                <span>Categorias</span>
+            </a>
+            <a href="/perfil" class="nav-item <%= currentPage === 'perfil' ? 'active' : '' %>">
+                <div class="nav-icon icon-user"></div>
+                <span>Perfil</span>
+            </a>
+        </nav>
+    </div>
 </body>
 </html>
+
